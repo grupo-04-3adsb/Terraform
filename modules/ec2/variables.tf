@@ -37,7 +37,7 @@ variable "vpc_id" {
 variable "allowed_ssh_cidr_blocks" {
   description = "Lista de blocos CIDR permitidos para acesso SSH"
   type        = list(string)
-  default     = ["0.0.0.0/0"] # Permitir acesso de qualquer lugar (não recomendado para produção)
+  default     = ["0.0.0.0/0"]
 }
 
 

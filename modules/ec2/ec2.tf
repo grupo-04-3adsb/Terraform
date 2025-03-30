@@ -1,11 +1,10 @@
 resource "aws_security_group" "ec2_sg" {
   name        = "${var.name}-sg"
-  description = "Security Group para a instância EC2 ${var.name}"
+  description = "Security Group for EC2 instance ${var.name}"
   vpc_id      = var.vpc_id
 
-  # Regras de entrada (ingress)
   ingress {
-    description      = "Permitir SSH"
+    description      = "Allow SSH"
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
@@ -21,7 +20,7 @@ resource "aws_security_group" "ec2_sg" {
   }
 
   egress {
-    description      = "Permitir todo o tráfego de saída"
+    description      = "Allow all outbound traffic"
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
