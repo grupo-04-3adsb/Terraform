@@ -1,0 +1,18 @@
+# Arquivos gerados pelo Terraform
+.terraform/
+.terraform.lock.hcl
+
+# Arquivos de variáveis sensíveis
+terraform.tfvars
+*.tfstate
+*.tfstate.backup
+
+# Logs e arquivos temporários
+crash.log
+*.log
+*.backup
+*.tmp
+
+# Chaves SSH ou arquivos sensíveis
+*.pem
+*.key
