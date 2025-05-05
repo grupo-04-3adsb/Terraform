@@ -49,3 +49,19 @@ resource "aws_instance" "ec2_instance" {
     create_before_destroy = true
   }
 }
+
+resource "aws_ebs_volume" "extra_volume" {
+  availability_zone = aws_instance.ec2_instance.availability_zone
+  size              = var.ebs_volume_size
+  type              = var.ebs_volume_type
+  tags = {
+    Name = "${var.name}-extra-ebs"
+  }
+}
+
+resource "aws_volume_attachment" "ebs_att" {
+  device_name = "/dev/sdh"
+  volume_id   = aws_ebs_volume.extra_volume.id
+  instance_id = aws_instance.ec2_instance.id
+  force_detach = true
+}

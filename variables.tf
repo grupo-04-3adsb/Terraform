@@ -1,7 +1,6 @@
-variable "public_key_path" {
-  description = "Caminho para o arquivo da chave pública RSA"
+variable "key_pair_name" {
   type        = string
-  default     = "~/.ssh/ebuy_key.pub"
+  default     = "id_rsa"  
 }
 
 variable "ami" {

@@ -40,9 +40,20 @@ variable "allowed_ssh_cidr_blocks" {
   default     = ["0.0.0.0/0"]
 }
 
-
 variable "security_group_id" {
   description = "ID de um Security Group existente para associar à instância EC2"
   type        = string
   default     = null
+}
+
+variable "ebs_volume_size" {
+  description = "Tamanho do volume EBS em GB"
+  type        = number
+  default     = 8
+}
+
+variable "ebs_volume_type" {
+  description = "Tipo do volume EBS"
+  type        = string
+  default     = "gp2"
 }
