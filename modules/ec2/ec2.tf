@@ -19,6 +19,22 @@ resource "aws_security_group" "ec2_sg" {
     cidr_blocks      = ["0.0.0.0/0"]
   }
 
+    ingress {
+    description      = "Allow TCP 5173"
+    from_port        = 5173
+    to_port          = 5173
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description      = "Allow TCP 5174"
+    from_port        = 5174
+    to_port          = 5174
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
   egress {
     description      = "Allow all outbound traffic"
     from_port        = 0
@@ -48,6 +64,21 @@ resource "aws_instance" "ec2_instance" {
   lifecycle {
     create_before_destroy = true
   }
+}
+
+resource "aws_eip" "ec2_eip" {
+  count = var.create_eip ? 1 : 0
+  vpc   = true
+
+  tags = {
+    Name = "${var.name}-eip"
+  }
+}
+
+resource "aws_eip_association" "ec2_eip_assoc" {
+  count         = var.create_eip ? 1 : 0
+  instance_id   = aws_instance.ec2_instance.id
+  allocation_id = aws_eip.ec2_eip[0].id
 }
 
 resource "aws_ebs_volume" "extra_volume" {

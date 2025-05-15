@@ -24,6 +24,12 @@ variable "associate_public_ip_address" {
   default     = false
 }
 
+variable "create_eip" {
+  description = "Se deve criar e associar um Elastic IP à instância"
+  type        = bool
+  default     = false
+}
+
 variable "rsa_key" {
   description = "The RSA key pair name to use for SSH access"
   type        = string

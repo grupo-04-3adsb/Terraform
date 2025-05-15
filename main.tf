@@ -36,6 +36,7 @@ module "ec2_public" {
   rsa_key                     = aws_key_pair.ebuy-key.key_name
   vpc_id                      = module.vpc.vpc_id
   allowed_ssh_cidr_blocks     = ["0.0.0.0/0"]
+  create_eip                  = true
 }
 
 module "ec2_private" {
